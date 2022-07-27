@@ -15,9 +15,6 @@ call plug#begin()
   " highlight the current selection when searching
   Plug 'https://github.com/adamheins/vim-highlight-match-under-cursor'
 
-  " navigate across vim and tmux windows seamlessly
-  " Plug 'christoomey/vim-tmux-navigator'
-
 " Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -31,7 +28,7 @@ set incsearch                   " show incremental search results as you type
 set lazyredraw                  " buffer screen updates instead of updating all the time (speeds up scrolling)
 set noswapfile                  " disable swap file
 set number                      " display line number
-set paste                       " don't auto-indent any text when pasting
+" set paste                       " don't auto-indent any text when pasting
 filetype plugin indent on
 
 " set buffers to hidden for editing multiple buffers without saving the mofications when loading other buffers
@@ -46,11 +43,6 @@ noremap <S-Left> b
 " move between vim buffers with ctrl-arrow
 noremap <C-Right> :bn<cr>
 noremap <C-Left> :bp<cr>
-
-" spell check
-" set spell spelllang=en_us
-" hi clear SpellBad
-" hi SpellBad cterm=underline ctermfg=red
 
 " indentation
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
@@ -79,11 +71,23 @@ highlight CursorLine cterm=None ctermbg=240
 " make vim window split color less eye-catching
 highlight VertSplit cterm=None ctermfg=15 ctermbg=None
 
-" folding
-"set foldmethod=indent  " fold based on indentation
-"set foldnestmax=2      " recursively fold only two down
-"set nofoldenable       " don't fold by default
-"set foldlevel=1
+" pair completion taken from https://vim.fandom.com/wiki/Automatically_append_closing_characters
+inoremap {	{}<Left>
+inoremap {}     {}
+inoremap [	[]<Left>
+inoremap []     []
+inoremap (	()<Left>
+inoremap ()     ()
+inoremap '	''<Left>
+inoremap ''     ''
+inoremap "	""<Left>
+inoremap ""     ""
+" look at char right after cursor and move cursor if it's the closing char
+inoremap <expr> }  strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
+inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
 
 "========== NERDTree Settings ==========
 nnoremap <C-t> :NERDTreeToggle<CR>
