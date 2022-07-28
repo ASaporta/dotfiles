@@ -15,6 +15,9 @@ call plug#begin()
   " highlight the current selection when searching
   Plug 'https://github.com/adamheins/vim-highlight-match-under-cursor'
 
+  " slime to turn tmux into repl
+  Plug 'jpalardy/vim-slime', { 'for': 'python' }
+
 " Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -107,3 +110,26 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 "========== Airline Settings ==========
 let g:airline_theme='deus'
 let g:airline#extensions#tabline#enabled = 1
+
+"========== Vim-Slime Config ===============
+let g:slime_target = "tmux"
+let g:slime_paste_file = "$HOME/.slime_paste"
+
+" always send commands to top-right tmux pane without asking
+let g:slime_default_config = {
+            \ 'socket_name': get(split($TMUX, ','), 0),
+            \ 'target_pane': '{top-right}' }
+let g:slime_dont_ask_default = 1
+
+" fix paste issues in ipython
+let g:slime_python_ipython = 1
+
+" change the <LocalLeader> key to comma
+let maplocalleader = ","
+
+" spacebar to send
+map <Space> :SlimeSendCurrentLine<CR>j
+
+" double spacebar to send full regions
+xmap <LocalLeader><Space> <Plug>SlimeRegionSend
+nmap <LocalLeader><Space> <Plug>SlimeParagraphSend}
