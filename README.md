@@ -9,3 +9,5 @@ Symlink the dotfiles:
 ```
 ./setup.sh
 ```
+
+:pray: Many thanks to [Andy Miller](https://github.com/andymiller) for sharing his vim wisdom with me. :raised-hands:
