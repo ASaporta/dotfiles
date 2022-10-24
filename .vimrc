@@ -18,6 +18,9 @@ call plug#begin()
   " slime to turn tmux into repl
   Plug 'jpalardy/vim-slime', { 'for': 'python' }
 
+  " generate python docstrings
+  Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+
 " Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -92,6 +95,9 @@ inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")
 inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
 
+" set python docstrings to google style
+let g:pydocstring_formatter = 'google'
+
 "========== NERDTree Settings ==========
 nnoremap <C-t> :NERDTreeToggle<CR>
 
@@ -126,10 +132,11 @@ let g:slime_python_ipython = 1
 
 " change the <LocalLeader> key to comma
 let maplocalleader = ","
+autocmd FileType python map <LocalLeader>p :ScreenShell! ipython<CR>
 
-" spacebar to send
+" spacebar to send single line
 map <Space> :SlimeSendCurrentLine<CR>j
 
-" double spacebar to send full regions
+" comma spacebar to send full regions
 xmap <LocalLeader><Space> <Plug>SlimeRegionSend
 nmap <LocalLeader><Space> <Plug>SlimeParagraphSend}
