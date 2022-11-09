@@ -24,6 +24,7 @@ call plug#begin()
 " Plugins become visible to Vim after this call.
 call plug#end()
 
+
 "========== General Vim Config ==========
 syntax on                       " syntax highlighting
 set autoread                    " reload files changed outside vim
@@ -35,6 +36,7 @@ set lazyredraw                  " buffer screen updates instead of updating all 
 set noswapfile                  " disable swap file
 set number                      " display line number
 " set paste                       " don't auto-indent any text when pasting
+set background=dark             " only including so colors work in nyu greene
 filetype plugin indent on
 
 " set buffers to hidden for editing multiple buffers without saving the mofications when loading other buffers
