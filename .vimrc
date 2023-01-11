@@ -55,6 +55,10 @@ noremap <C-Left> :bp<cr>
 " indentation
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
+" these lines needed so that error isn't thrown in singularity for 'set list'
+scriptencoding utf-8
+set encoding=utf-8
+
 set list listchars=tab:\ \ ,trail:· " display tabs and trailing spaces visually
 set nowrap      " don't wrap lines
 set linebreak   " wrap lines at convenient points
@@ -70,7 +74,6 @@ highlight ColorColumn ctermbg=234 guibg=#1c1c1c
 highlight Visual cterm=reverse
 
 set cursorline                  " underline the current line
-set cursorlineopt=line          " only underline the text, not line number
 " only show cursor line in the active vim region
 autocmd WinEnter,BufEnter,BufWinEnter * set cursorline
 autocmd WinLeave,BufLeave,BufWinLeave * set nocursorline
