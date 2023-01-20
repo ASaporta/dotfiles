@@ -21,6 +21,9 @@ call plug#begin()
   " generate python docstrings
   Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 
+  " github copilot
+  Plug 'github/copilot.vim'
+
 " Plugins become visible to Vim after this call.
 call plug#end()
 
