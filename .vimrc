@@ -24,6 +24,9 @@ call plug#begin()
   " github copilot
   Plug 'github/copilot.vim'
 
+  " comment toggle
+  Plug 'preservim/nerdcommenter'
+
 " Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -148,3 +151,26 @@ map <Space> :SlimeSendCurrentLine<CR>j
 " comma spacebar to send full regions
 xmap <LocalLeader><Space> <Plug>SlimeRegionSend
 nmap <LocalLeader><Space> <Plug>SlimeParagraphSend}
+
+"========== Nerd Commenter ===============
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+
+" swaps these mappings because cc is easier to type than c<Space>
+map c<Space> <plug>NERDCommenterComment
+map cc <plug>NERDCommenterToggle
