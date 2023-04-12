@@ -130,7 +130,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 "========== Vim-Slime Config ===============
 let g:slime_target = "tmux"
-let g:slime_paste_file = "$HOME/.slime_paste"
+let g:slime_paste_file = expand("$HOME/.slime_paste")
 
 " always send commands to top-right tmux pane without asking
 let g:slime_default_config = {
